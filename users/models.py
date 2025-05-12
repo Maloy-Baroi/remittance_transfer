@@ -26,15 +26,19 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """Custom user model with email as unique identifier"""
     email = models.EmailField(unique=True)
     bangladeshi_passport_no = models.CharField(max_length=15)
-    passport_photo = models.ImageField(upload_to="/user_photo/")
+    passport_photo = models.ImageField(upload_to="user_photo/")
     password = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=False)
+    
+    is_staff   = models.BooleanField(default=False)
+    is_active  = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    objects = UserManager()
+
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['bangladeshi_passport_no', 'password']
+    REQUIRED_FIELDS = ['bangladeshi_passport_no'] 
     
     def __str__(self):
         return self.email

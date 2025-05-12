@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'mobile_bankings'
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     'corsheaders.middleware.CorsMiddleware',
